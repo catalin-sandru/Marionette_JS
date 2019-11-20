@@ -8,7 +8,7 @@ const merge = require('webpack-merge');
 
 const webpackCommon = {
   entry: {
-    app: ['./app/initialize']
+    app: ['./app/mainApp']
   },
   module: {
     rules: [
@@ -74,13 +74,13 @@ switch (process.env.npm_lifecycle_event) {
       devServer: {
         contentBase: path.join(__dirname, 'public'),
         compress: true,
-        port: 9000
+        port: 8080
       }
     });
-    break;
+  break;
   default:
     module.exports = merge(webpackCommon, {
       devtool: 'source-map'
     });
-    break;
+  break;
 }
