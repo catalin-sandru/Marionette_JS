@@ -6,7 +6,7 @@ import header_template from '../../templates/item.jst'
 const HeaderView = View.extend({
   el: '#betslip_header',
 
-  // template: header_template,
+  template: header_template,
 
   regions: {
     title: "#header_title",
