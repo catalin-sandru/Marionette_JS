@@ -3,8 +3,8 @@ import HeaderModel from '../models/header_model';
 
 const TitleView = Mn.View.extend({
   el: '#header_title',
-  model: new HeaderModel(),
   template: _.template(`<%= eventName %>`),
+  model: new HeaderModel(),
   
   initialize() {
     this.model.set("eventName", this.options.eventName);

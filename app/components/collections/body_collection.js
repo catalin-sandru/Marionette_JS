@@ -1,7 +1,7 @@
-import { Collection } from 'backbone.marionette';
+import { View } from 'backbone.marionette';
 
-const BodyCollection = Collection.extend({
+const BodyView = View.extend({
   childView: function() {
     
   }
-})
+});

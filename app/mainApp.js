@@ -12,18 +12,16 @@ const App = Mn.Application.extend({
     console.log(this)
   },
   
-  // onBeforeStart: function () {
-  //   // console.log(this)
-  // },
-  
-  onStart() {
+  onBeforeStart: function () {
     this.getSelectionsData()
       .then(res => {
         const headerView = new HeaderView(res.response)
         this.showView(headerView)
       })
-      // .catch(err => console.error(err));
-      
+      .catch(err => console.error(err));
+  },
+  
+  onStart() {  
     this.attachWebSockets();
   },
 

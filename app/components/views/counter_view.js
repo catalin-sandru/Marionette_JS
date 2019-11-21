@@ -6,11 +6,9 @@ const CounterView = Mn.View.extend({
   template: _.template(`<%= counter %>`),
   model: new HeaderModel(),
 
-  // initialize: function() {
-  //   // this.model.set("counter", this.model.counter)
-  //   // console.log(this)
-  //   // this.render();
-  // }
+  initialize: function() {
+    this.model.set("counter", 111)
+  }
 })
 
 export default CounterView;
