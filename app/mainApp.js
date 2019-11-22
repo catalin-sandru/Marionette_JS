@@ -1,28 +1,29 @@
 import Mn from 'backbone.marionette';
-// import CounterView from './components/views/counter_view';
 import HeaderView from './components/collections/header_collection';
-import HeaderModel from './components/models/header_model';
+import BetslipModel from './components/models/betslip_model';
+import BodyView from './components/collections/body_collection';
+
 const io = require('socket.io-client');
 
 const App = Mn.Application.extend({
   region: '#app_hook',
 
   initialize: function() {
-    // this.HeaderModel = new Backbone.Model();
-    console.log(this)
+    this.attachWebSockets();
   },
   
   onBeforeStart: function () {
     this.getSelectionsData()
-      .then(res => {
-        const headerView = new HeaderView(res.response)
-        this.showView(headerView)
-      })
-      .catch(err => console.error(err));
+    .then(res => {
+      const headerView = new HeaderView(res.response)
+      this.showView(headerView)
+    })
+    .catch(err => console.error(err));
   },
   
-  onStart() {  
-    this.attachWebSockets();
+  onStart() {
+    console.log(this)
+    this.showView(new BodyView(this.model))
   },
 
   getSelectionsData(){
@@ -33,17 +34,14 @@ const App = Mn.Application.extend({
         .then(res => res.json())
         .then(json => resolve(this.data = json))
         .catch(err => console.error(err));
-
-      // resolve with the data received from the api call
-      //then you initialize new HeaderView with data on a Backbone Model/Collection depending on the struture that you are coding
     })
   },
   
   attachWebSockets() {
     const socket = io("http://localhost:5000");
     return socket.on('selections', data => {
-      // console.log(data);
-      return data
+      console.log(this);
+      return this.model = new Backbone.Model(data)
     });
   }
 });
