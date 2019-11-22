@@ -1,7 +1,13 @@
-import { View } from 'backbone.marionette';
+import { CollectionView } from 'backbone.marionette';
+import BetslipItemView from '../views/betslipItemView';
 
-const BodyView = View.extend({
-  childView: function() {
-    
+const BodyView = CollectionView.extend({
+  childView: BetslipItemView,
+  collection: "",
+
+  initialize() {
+    console.log(this)
   }
 });
+
+export default BodyView;
