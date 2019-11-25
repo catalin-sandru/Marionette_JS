@@ -7,7 +7,7 @@ const CounterView = Mn.View.extend({
   model: new HeaderModel(),
 
   initialize: function() {
-    this.model.set("counter", 111)
+    this.model.set("counter", 666)
   }
 })
 

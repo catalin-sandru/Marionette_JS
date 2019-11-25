@@ -2,7 +2,10 @@ import { Model } from 'backbone';
 
 const BestlipModel = Model.extend({
   defaults: {
-    selections: {},
+    selections: {
+      name: "",
+      price: 0
+    },
     type: ""
   }
 })

@@ -23,7 +23,7 @@ const App = Mn.Application.extend({
   
   onStart() {
     console.log(this)
-    this.showView(new BodyView(this.model))
+    // this.showView(new BodyView(this.model))
   },
 
   getSelectionsData(){
@@ -40,8 +40,8 @@ const App = Mn.Application.extend({
   attachWebSockets() {
     const socket = io("http://localhost:5000");
     return socket.on('selections', data => {
-      console.log(this);
-      return this.model = new Backbone.Model(data)
+      // console.log(this);
+      return this.model = new BodyView(data)
     });
   }
 });
