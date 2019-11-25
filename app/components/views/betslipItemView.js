@@ -7,7 +7,11 @@ const BetslipItemView = View.extend({
                           <h6> <%= name %> </h6>
                           <button disabled="<%= active %>"> <%= price %> </button>
                       </div>`),
-  model: BestlipModel
+  // model: new BestlipModel(),
+
+  initialize() {
+    console.log(this)
+  }
 });
 
 export default BetslipItemView
