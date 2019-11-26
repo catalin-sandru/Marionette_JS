@@ -1,7 +1,7 @@
 import Mn from 'backbone.marionette';
 import HeaderView from './components/collections/header_collection';
 import BetslipModel from './components/models/betslip_model';
-import BodyView from './components/collections/body_collection';
+import BodyCollection from './components/collections/body_collection';
 
 const io = require('socket.io-client');
 
@@ -9,7 +9,6 @@ const App = Mn.Application.extend({
   region: '#app_hook',
 
   initialize: function() {
-    this.attachWebSockets();
   },
   
   onBeforeStart: function () {
@@ -23,7 +22,7 @@ const App = Mn.Application.extend({
   
   onStart() {
     console.log(this)
-    // this.showView(new BodyView(this.model))
+    this.attachWebSockets();
   },
 
   getSelectionsData(){
@@ -41,7 +40,8 @@ const App = Mn.Application.extend({
     const socket = io("http://localhost:5000");
     return socket.on('selections', data => {
       // console.log(this);
-      return this.model = new BodyView(data)
+      const newData = new BetslipModel(data)
+      return this.model = new BodyCollection({collection: newData})
     });
   }
 });
