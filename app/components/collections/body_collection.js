@@ -5,9 +5,9 @@ const BodyCollection = CollectionView.extend({
   tagName: 'ul',
   childView: BetslipItemView,
 
-  initialize() {
-    console.log(this)
-  },
+  // initialize() {
+  //   console.log("asdasdas")
+  // }
 });
 
 export default BodyCollection;
