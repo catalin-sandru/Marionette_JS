@@ -10,7 +10,9 @@ const App = Mn.Application.extend({
   region: '#app_hook',
 
   initialize: function() {
-    this.model = new BetslipModel({});
+    this.model = new BetslipModel();
+    this.collection = new Backbone.Collection();
+    console.log(this)
   },
   
   onBeforeStart: function () {
@@ -24,7 +26,6 @@ const App = Mn.Application.extend({
   
   onStart() {
     this.attachWebSockets();
-    console.log(this)
   },
 
   getSelectionsData(){
@@ -41,11 +42,13 @@ const App = Mn.Application.extend({
   attachWebSockets() {
     const socket = io("http://localhost:5000");
     return socket.on('selections', data => {
-      // console.log(this);
-      this.model = new BetslipModel(data)
-      return new BodyView({collection: this.model})
+      // console.log(data);
+      this.model = new BetslipModel(data.selections);
+      this.collection = new Backbone.Collection({model: this.model});
+
+      return new BodyView({collection: this.collection})
     });
-  }
+  },
 });
 
 const app = new App();

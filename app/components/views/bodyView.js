@@ -2,21 +2,21 @@ import { View } from 'backbone.marionette';
 import BodyCollection from '../collections/body_collection';
 
 const BodyView = View.extend({
-  template: '#betslip_body',
+  // el: '#betslip_list',
+  template: '#body_template',
 
   regions: {
-    body: {
-      el: "section",
-      replaceElement: true
-    }
+    name: '.betslip_item--title',
+    button: '.betslip_item--button'
   },
 
   initialize() {
-    console.log(this)
-    this.showChildView('section', new BodyCollection({
-      collection: this.collection.attributes
-    }))
-  }
+    // console.log(this)
+    const bodyView = new BodyCollection({
+      collection: this.collection
+    });
+    this.showChildView("name", bodyView);
+  },
 });
 
 export default BodyView;
