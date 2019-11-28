@@ -74,7 +74,7 @@ switch (process.env.npm_lifecycle_event) {
       devServer: {
         contentBase: path.join(__dirname, 'public'),
         compress: true,
-        port: 8080
+        port: 8070
       }
     });
   break;
