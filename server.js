@@ -48,7 +48,7 @@ const startPriceChange = socket => {
       ],
     }
     socket.emit('selections', data);
-  }, 3000);
+  }, 10000);
 };
 
 const startSelectionInactivity = socket => {
