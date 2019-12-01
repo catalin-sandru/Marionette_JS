@@ -6,7 +6,7 @@ const BodyItemView = View.extend({
   template: itemTemplate,
 
   initialize() {
-    console.log(this)
+    // console.log(this)
   }
 })
 
