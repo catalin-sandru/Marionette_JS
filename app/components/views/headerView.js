@@ -3,20 +3,22 @@ import headerTemplate from '../../templates/headerTemplate.jst'
 import HeaderModel from '../models/headerModel';
 const io = require('socket.io-client')
 
+
 const HeaderView = View.extend({
   template: headerTemplate,
   model: new HeaderModel(),
 
   initialize() {
+    console.log(this)
     this.attachWebSockets();
-    this.model.set('eventName', this.options.title)
+    this.model.set('eventName', this.options.eventName)
+    this.model.set('counter', this.options.counter.length)
   },
 
   attachWebSockets() {
     const socket = io("http://localhost:5000");
     return socket.on("selections", data => {
-      console.log(this)
-      return this.data = data
+      return data
     })
   }
 })

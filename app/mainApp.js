@@ -6,7 +6,7 @@ const App = Application.extend({
   region: '#app_hook',
 
   // onBeforeStart() {
-  //   this.attachWebSockets()
+    // this.attachWebSockets()
   // },
 
   onStart() {

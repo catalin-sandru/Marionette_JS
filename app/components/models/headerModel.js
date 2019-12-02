@@ -4,6 +4,9 @@ const HeaderModel = Model.extend({
   defaults: {
     counter: 0,
     eventName: ""
+  },
+  initialize() {
+    
   }
 })
 
