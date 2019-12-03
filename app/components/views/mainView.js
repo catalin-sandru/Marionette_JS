@@ -2,6 +2,7 @@ import { View } from 'backbone.marionette';
 import mainTemplate from '../../templates/mainTemplate.jst'
 import BodyCollectionView from '../collections/bodyCollectionView';
 import HeaderView from './headerView';
+import HeaderModel from '../models/headerModel';
 
 const MainView = View.extend({
   template: mainTemplate,
@@ -12,16 +13,24 @@ const MainView = View.extend({
     body: '#betslip_body'
   },
 
+  initialize() {
+    this.model = new HeaderModel({
+      counter: [],
+      eventName: this.options.title
+    });
+  },
+  
   onRender() {
     this.showChildView('body', new BodyCollectionView({
-      collection: this.collection
+      collection: this.collection,
+      model: this.model
     }));
+    
     console.log(this)
-    const options = {
-      counter: 0,
-      title: this.options.title
-    }
-    this.showChildView('header', new HeaderView(options))
+    
+    this.showChildView('header', new HeaderView({
+      model: this.model
+    }));
   }
 });
 
