@@ -19,15 +19,18 @@ const MainView = View.extend({
       eventName: this.options.title
     });
   },
-
+  
   onRender() {
     this.showChildView('body', new BodyCollectionView({
-      collection: this.collection
+      collection: this.collection,
+      model: this.model
     }));
     
     console.log(this)
-
-    this.showChildView('header', new HeaderView(this.model.attributes))
+    
+    this.showChildView('header', new HeaderView({
+      model: this.model
+    }));
   }
 });
 
