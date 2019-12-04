@@ -1,21 +1,22 @@
 import { Application } from 'backbone.marionette';
 import MainView from './components/views/mainView';
-
+const io = require('socket.io-client')
 
 const App = Application.extend({
   region: '#app_hook',
-
-  // onBeforeStart() {
-    // this.attachWebSockets()
-  // },
+  collection: [],
 
   onStart() {
     this.getInitialSelections().then(res => {
-      const collection = new Backbone.Collection(res.selections);
+      this.collection = new Backbone.Collection(res.selections);
+      console.log(this.collection)
+
       const mainView = new MainView({
-        collection: collection,
+        collection: this.collection,
         title: res.eventName
       });
+
+      this.attachWebSockets()
       const render = mainView.render();
       return this.showView(render)
     });
@@ -30,6 +31,18 @@ const App = Application.extend({
         .catch(err => console.error(err))
     })
   },
+
+  attachWebSockets() {
+    const socket = io("http://localhost:5000");
+    return socket.on("selections", data => {
+      console.log(data)
+      {data.type === 'price-change' ? 
+        console.log('price-change')
+        :
+        console.log('state-change')}
+    })
+  },
+
 })
 
 const app = new App();

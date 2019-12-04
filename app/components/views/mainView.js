@@ -18,12 +18,13 @@ const MainView = View.extend({
       counter: [],
       eventName: this.options.title
     });
+
+    // this.attachWebSockets();
   },
   
   onRender() {
     this.showChildView('body', new BodyCollectionView({
-      collection: this.collection,
-      model: this.model
+      collection: this.collection
     }));
     
     console.log(this)
