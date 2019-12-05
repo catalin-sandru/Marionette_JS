@@ -35,16 +35,29 @@ const App = Application.extend({
   attachWebSockets() {
     const socket = io("http://localhost:5000");
     return socket.on("selections", data => {
-      console.log(data)
+      // console.log(data)
       {data.type === 'price-change' ? 
-        console.log('price-change')
+        this.collection.models.forEach(model => {
+          data.selections.forEach(el => {
+            if(el.id === model.id) {
+              model.set('price', el.price)
+            }
+          })
+        })
         :
-        console.log('state-change')}
+        this.collection.models.forEach(model => {
+          data.selections.forEach(el => {
+            if(el.id === model.id) {
+              model.set('active', el.active)
+            }
+          })
+        })
+      }
     })
   },
-
 })
 
 const app = new App();
 
 app.start();
+

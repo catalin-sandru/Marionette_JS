@@ -2,7 +2,8 @@ import { Model } from 'backbone';
 
 const HeaderModel = Model.extend({
   defaults: {
-    counter: [],
+    counter: 0,
+    selections: [],
     eventName: ""
   }
 })

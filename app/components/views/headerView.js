@@ -1,16 +1,25 @@
 import { View } from 'backbone.marionette';
 import headerTemplate from '../../templates/headerTemplate.jst'
-import HeaderModel from '../models/headerModel';
 
 
 const HeaderView = View.extend({
   template: headerTemplate,
 
-  initialize() {
-    console.log(this)
-    // this.model.set('eventName', this.options.eventName)
-    this.model.set('counter', this.model.attributes.counter.length)
+  modelEvents: {
+    'change': 'reRender'
   },
+
+  onRender() {
+    // this.model.set('eventName', this.options.eventName)
+    const counter = this.model.attributes.selections.length
+    this.model.set('counter', counter)
+    console.log(this)
+  },
+  
+  reRender() {
+    this.render()
+    console.log("event fired")
+  }
 })
 
 export default HeaderView;
