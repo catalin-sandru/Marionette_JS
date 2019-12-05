@@ -15,16 +15,14 @@ const MainView = View.extend({
 
   initialize() {
     this.model = new HeaderModel({
-      counter: [],
       eventName: this.options.title
     });
-
-    // this.attachWebSockets();
   },
   
   onRender() {
     this.showChildView('body', new BodyCollectionView({
-      collection: this.collection
+      collection: this.collection,
+      model: this.model
     }));
     
     console.log(this)
