@@ -12,14 +12,22 @@ const BodyCollectionView = CollectionView.extend({
   },
 
   onChildviewSelectItem(childView) {
-    this.model.attributes.selections.push(childView.model);
-    const counter = this.model.get('selections').length
-    console.log(counter)
-    return this.model.set('counter', counter)
+    const { selections } = this.model.attributes;
+    const { cid } = childView.model
+    
+    if(selections.includes(cid)) {
+      const index = selections.indexOf(cid)
+      selections.splice(index, 1)
+    } else {
+      selections.push(cid)
+    }
+
+    const counter = this.model.get('selections').length;
+    return this.model.set('counter', counter);
   },
 
   onRender() {
-    // console.log(this)
+    console.log(this)
   }
 })
 

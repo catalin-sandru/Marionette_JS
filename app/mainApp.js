@@ -9,14 +9,13 @@ const App = Application.extend({
   onStart() {
     this.getInitialSelections().then(res => {
       this.collection = new Backbone.Collection(res.selections);
-      console.log(this.collection)
 
       const mainView = new MainView({
         collection: this.collection,
         title: res.eventName
       });
 
-      this.attachWebSockets()
+      this.attachWebSockets();
       const render = mainView.render();
       return this.showView(render)
     });
