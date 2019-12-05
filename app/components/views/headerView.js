@@ -6,19 +6,13 @@ const HeaderView = View.extend({
   template: headerTemplate,
 
   modelEvents: {
-    'change': 'reRender'
+    'change': 'render'
   },
 
   onRender() {
-    // this.model.set('eventName', this.options.eventName)
     const counter = this.model.attributes.selections.length
     this.model.set('counter', counter)
     console.log(this)
-  },
-  
-  reRender() {
-    this.render()
-    console.log("event fired")
   }
 })
 
