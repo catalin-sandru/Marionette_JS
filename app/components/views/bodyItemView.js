@@ -1,13 +1,12 @@
 import { View } from 'backbone.marionette';
 import itemTemplate from '../../templates/itemTemplate.jst'
-import HeaderModel from '../models/headerModel';
 
 const BodyItemView = View.extend({
   tagName: 'li',
   template: itemTemplate,
 
   ui: {
-    button: '#button_1'
+    button: '#bet_button'
   },
 
   triggers: {
