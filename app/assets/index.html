@@ -3,6 +3,60 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Backbone-Marionette</title>
+		<base href="/">
+		<link rel="stylesheet" href="app/styles/application.css" type="text/css">
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				border: 0;
+				box-sizing: border-box;
+			}
+
+			#betslip_header> div {
+				display: flex;
+				justify-content: space-evenly;
+				max-width: 50%;
+				margin:  0.7rem auto;
+				background: #000;
+				color: #fff;
+			}
+
+			header > div h3 {
+				font-size: 2rem;
+				width: 3rem;
+				text-align: center;
+				background: orange;
+			}
+
+			#betslip_body ul {
+				max-width: 30%;
+				margin: auto
+			}
+
+			#betslip_body ul li {
+				display: flex;
+				justify-content: space-between;
+				margin: 1rem 0
+			}
+
+			#betslip_body ul li h3 {
+				font-size: 1.5rem;
+			}
+
+			button {
+				padding: 0.5rem 1rem;
+				background: lightgreen;
+				font-size: 1rem;
+				border: 2px solid green;
+				border-radius: 0.2rem;
+			}
+
+			button:disabled {
+				border: 2px solid red;
+				background: rgb(211, 211, 211);
+			}
+		</style>
 	</head>
 	<body id="app_hook">
 

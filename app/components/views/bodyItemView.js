@@ -11,20 +11,19 @@ const BodyItemView = View.extend({
   },
 
   triggers: {
-    'click button': 'select:item'
+    'click button': 'select:item',
   },
 
   modelEvents: {
-    'change': 'render'
+    'change': 'render',
   },
 
   onRender() {
     if(this.model.attributes.active === false) {
       const getBtn = this.getUI('button');
       getBtn.attr('disabled', 'disabled')
-      // console.log(getBtn.attr('disabled'))
     }
-  }
+  },
 })
 
 export default BodyItemView

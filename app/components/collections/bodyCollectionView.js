@@ -5,29 +5,44 @@ import HeaderModel from '../models/headerModel';
 const BodyCollectionView = CollectionView.extend({
   childView: BodyItemView,
   tagName: 'ul',
-  // options: new HeaderModel(),
 
-  childViewOptions: {
-    selectedArr: new HeaderModel()
+  childViewEvents: {
+    render: function(childView) {
+      const { selections } = this.model.attributes;
+      const { cid } = childView.model;
+      const { active } = childView.model.attributes;
+
+      if(selections.includes(cid) && active === false) {
+        this.removeSelected(childView);
+        return this.updateCounter()
+      } 
+    }
   },
 
   onChildviewSelectItem(childView) {
     const { selections } = this.model.attributes;
-    const { cid } = childView.model
-    
-    if(selections.includes(cid)) {
-      const index = selections.indexOf(cid)
-      selections.splice(index, 1)
-    } else {
-      selections.push(cid)
-    }
+    const { cid } = childView.model;
 
-    const counter = this.model.get('selections').length;
-    return this.model.set('counter', counter);
+    {selections.includes(cid)
+    ?
+      this.removeSelected(childView)
+    :
+      selections.push(cid)};
+    
+    return this.updateCounter()
   },
 
-  onRender() {
-    console.log(this)
+  removeSelected(childView) {
+    const { selections } = this.model.attributes;
+    const { cid } = childView.model
+
+    const index = selections.indexOf(cid);
+    return selections.splice(index, 1);
+  },
+
+  updateCounter() {
+    const counter = this.model.get('selections').length;
+    return this.model.set('counter', counter);
   }
 })
 

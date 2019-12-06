@@ -34,7 +34,6 @@ const App = Application.extend({
   attachWebSockets() {
     const socket = io("http://localhost:5000");
     return socket.on("selections", data => {
-      // console.log(data)
       {data.type === 'price-change' ? 
         this.collection.models.forEach(model => {
           data.selections.forEach(el => {

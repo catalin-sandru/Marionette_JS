@@ -25,8 +25,6 @@ const MainView = View.extend({
       model: this.model
     }));
     
-    console.log(this)
-    
     this.showChildView('header', new HeaderView({
       model: this.model
     }));
