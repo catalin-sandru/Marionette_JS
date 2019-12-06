@@ -4,7 +4,6 @@ const io = require('socket.io-client')
 
 const App = Application.extend({
   region: '#app_hook',
-  collection: [],
 
   onStart() {
     this.getInitialSelections().then(res => {
@@ -15,10 +14,10 @@ const App = Application.extend({
         title: res.eventName
       });
 
-      this.attachWebSockets();
       const render = mainView.render();
       return this.showView(render)
     });
+    this.attachWebSockets();
   },
 
   getInitialSelections() {

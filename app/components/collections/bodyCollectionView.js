@@ -1,6 +1,5 @@
 import { CollectionView } from 'backbone.marionette';
 import BodyItemView from '../views/bodyItemView';
-import HeaderModel from '../models/headerModel';
 
 const BodyCollectionView = CollectionView.extend({
   childView: BodyItemView,
