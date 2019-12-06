@@ -10,9 +10,8 @@ const HeaderView = View.extend({
   },
 
   onRender() {
-    const counter = this.model.attributes.selections.length
-    this.model.set('counter', counter)
-    console.log(this)
+    const counter = this.model.attributes.selections.length;
+    this.model.set('counter', counter);
   }
 })
 
